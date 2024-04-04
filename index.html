@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: url('https://gifdb.com/images/high/black-background-glitch-tuning-p8257c9synzrwsl7.gif') center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            position: relative; /* Устанавливаем позицию для абсолютного позиционирования */
+        }
+
+        #loading-text {
+            font-size: 36px;
+            /* Убираем точки и добавляем анимацию */
+            animation: pulse 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .loader {
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 6px solid #fff;
+            width: 50px;
+            height: 50px;
+            /* Добавляем анимацию вращения */
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .social-buttons {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap; /* Разрешаем перенос кнопок на новую строку */
+            justify-content: center;
+        }
+
+        .social-buttons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+            background-color: #333; /* Темно-серый цвет */
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease; /* Добавляем анимацию изменения размера */
+        }
+
+        .social-buttons a:hover {
+            background-color: #222; /* Темнее для активного состояния */
+            transform: scale(1.1); /* Увеличиваем размер при наведении */
+        }
+
+        #start-soon {
+            position: absolute; /* Абсолютное позиционирование */
+            bottom: 20px; /* Отступ от нижнего края страницы */
+            font-size: 14px;
+            color: #333; /* Темно-серый цвет */
+        }
+
+        /* Медиа-запрос для мобильных устройств */
+        @media only screen and (max-width: 600px) {
+            #loading-text {
+                font-size: 24px;
+            }
+
+            .loader {
+                width: 30px;
+                height: 30px;
+            }
+
+            .social-buttons a {
+                padding: 8px 16px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loading-text">Loading</div>
+    <div class="loader"></div>
+    <div class="social-buttons">
+        <a href="https://t.me/findmide" target="_blank">Telegram</a>
+        <a href="https://vk.com/essenco" target="_blank">VKontakte</a>
+        <a href="https://zelenka.guru/members/4608935/" target="_blank">Lolzteam</a>
+    </div>
+    <div id="start-soon">It's going to start soon...</div>
+</body>
+</html>
