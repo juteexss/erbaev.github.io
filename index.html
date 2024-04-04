@@ -95,7 +95,7 @@
                 padding: 8px 16px;
             }
         }
-        
+
         /* Стили для кнопки воспроизведения/паузы */
         .audio-controls {
             position: absolute;
@@ -104,29 +104,33 @@
             display: flex;
             align-items: center;
         }
-        
+
         .audio-controls button {
-            background-color: #333;
-            color: #fff;
+            background-color: #fff;
+            color: #333;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             margin-left: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
         }
-        
+
         .audio-controls button:hover {
-            background-color: #222;
+            background-color: #eee;
         }
-        
+
         /* Стили для ползунка громкости */
         .volume-slider {
             width: 100px;
             margin-left: 20px;
         }
-        
+
         .volume-slider input[type="range"] {
             -webkit-appearance: none;
             width: 100%;
@@ -138,7 +142,7 @@
             -webkit-transition: .2s;
             transition: opacity .2s;
         }
-        
+
         .volume-slider input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -148,7 +152,7 @@
             border-radius: 50%;
             cursor: pointer;
         }
-        
+
         .volume-slider input[type="range"]:hover {
             opacity: 1;
         }
@@ -164,47 +168,54 @@
         <a href="https://zelenka.guru/members/4608935/" target="_blank">Lolzteam</a>
     </div>
     <div id="start-soon">It's going to start soon...</div>
-    
+
     <!-- Включение аудио -->
-    <audio id="audio" autoplay loop volume="0.2">
+    <audio id="audio" loop volume="0.2">
         <source src="Больше ничего(polnalyubvi).mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
-    
+
     <!-- Элементы управления аудио -->
     <div class="audio-controls">
         <!-- Кнопка воспроизведения/паузы -->
-        <button id="playPauseButton">&#9658;</button>
+        <button id="playPauseButton">►</button>
         <!-- Ползунок громкости -->
         <div class="volume-slider">
             <input type="range" min="0" max="1" step="0.01" value="0.2" id="volumeControl">
         </div>
     </div>
-    
+
+    <!-- JavaScript -->
     <script>
         // Получаем ссылку на аудио
         var audio = document.getElementById("audio");
-        
-        // Получаем ссылку на кнопку воспроизведения/паузы
-        var playPauseButton = document.getElementById("playPauseButton");
-        
+
         // Функция для воспроизведения/паузы аудио
         function togglePlayPause() {
             if (audio.paused) {
                 audio.play();
-                playPauseButton.innerHTML = "&#10074;&#10074;"; // Изменяем значок на паузу
+                playPauseButton.innerHTML = "❚❚"; // Изменяем значок на паузу
             } else {
                 audio.pause();
-                playPauseButton.innerHTML = "&#9658;"; // Изменяем значок на воспроизведение
+                playPauseButton.innerHTML = "►"; // Изменяем значок на воспроизведение
             }
         }
-        
+
+        // Получаем ссылку на кнопку воспроизведения/паузы
+        var playPauseButton = document.getElementById("playPauseButton");
+
         // Привязываем функцию к событию нажатия на кнопку воспроизведения/паузы
         playPauseButton.addEventListener("click", togglePlayPause);
-        
+
         // Привязываем функцию к событию изменения положения ползунка громкости
         document.getElementById("volumeControl").addEventListener("input", function() {
             audio.volume = this.value; // Устанавливаем громкость аудио в соответствии с положением ползунка
+        });
+
+        // Включаем автоматическое воспроизведение аудио после загрузки страницы
+        window.addEventListener("load", function() {
+            audio.play();
+            playPauseButton.innerHTML = "❚❚";
         });
     </script>
 </body>
