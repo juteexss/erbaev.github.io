@@ -106,12 +106,12 @@
         }
 
         .audio-controls button {
-            background-color: #fff;
-            color: #333;
+            background-color: #333;
+            color: #fff;
             border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             margin-left: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -122,25 +122,28 @@
         }
 
         .audio-controls button:hover {
-            background-color: #eee;
+            background-color: #222;
         }
 
         /* Стили для ползунка громкости */
         .volume-slider {
-            width: 100px;
-            margin-left: 20px;
+            width: 80px;
+            margin-left: 10px;
+            position: relative;
         }
 
         .volume-slider input[type="range"] {
             -webkit-appearance: none;
+            appearance: none;
             width: 100%;
             height: 5px;
             background: #fff;
             border-radius: 5px;
             outline: none;
             opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
+            transition: opacity 0.2s;
+            position: absolute;
+            bottom: 0;
         }
 
         .volume-slider input[type="range"]::-webkit-slider-thumb {
@@ -151,6 +154,8 @@
             background: #fff;
             border-radius: 50%;
             cursor: pointer;
+            position: relative;
+            z-index: 1;
         }
 
         .volume-slider input[type="range"]:hover {
@@ -170,7 +175,7 @@
     <div id="start-soon">It's going to start soon...</div>
 
     <!-- Включение аудио -->
-    <audio id="audio" loop volume="0.2">
+    <audio id="audio" autoplay loop volume="0.2">
         <source src="Больше ничего(polnalyubvi).mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
@@ -178,31 +183,30 @@
     <!-- Элементы управления аудио -->
     <div class="audio-controls">
         <!-- Кнопка воспроизведения/паузы -->
-        <button id="playPauseButton">►</button>
+        <button id="playPauseButton">&#10074;&#10074;</button>
         <!-- Ползунок громкости -->
         <div class="volume-slider">
             <input type="range" min="0" max="1" step="0.01" value="0.2" id="volumeControl">
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
         // Получаем ссылку на аудио
         var audio = document.getElementById("audio");
+
+        // Получаем ссылку на кнопку воспроизведения/паузы
+        var playPauseButton = document.getElementById("playPauseButton");
 
         // Функция для воспроизведения/паузы аудио
         function togglePlayPause() {
             if (audio.paused) {
                 audio.play();
-                playPauseButton.innerHTML = "❚❚"; // Изменяем значок на паузу
+                playPauseButton.innerHTML = "&#9658;"; // Изменяем значок на паузу
             } else {
                 audio.pause();
-                playPauseButton.innerHTML = "►"; // Изменяем значок на воспроизведение
+                playPauseButton.innerHTML = "&#10074;&#10074;"; // Изменяем значок на воспроизведение
             }
         }
-
-        // Получаем ссылку на кнопку воспроизведения/паузы
-        var playPauseButton = document.getElementById("playPauseButton");
 
         // Привязываем функцию к событию нажатия на кнопку воспроизведения/паузы
         playPauseButton.addEventListener("click", togglePlayPause);
@@ -210,12 +214,6 @@
         // Привязываем функцию к событию изменения положения ползунка громкости
         document.getElementById("volumeControl").addEventListener("input", function() {
             audio.volume = this.value; // Устанавливаем громкость аудио в соответствии с положением ползунка
-        });
-
-        // Включаем автоматическое воспроизведение аудио после загрузки страницы
-        window.addEventListener("load", function() {
-            audio.play();
-            playPauseButton.innerHTML = "❚❚";
         });
     </script>
 </body>
