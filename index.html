@@ -108,9 +108,16 @@
     </div>
     <div id="start-soon">It's going to start soon...</div>
     <!-- Включение аудио -->
-    <audio autoplay loop volume="0.2">
+    <audio autoplay loop volume="0.2" id="bgAudio">
         <source src="Больше ничего(polnalyubvi).mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
-</body>
-</html>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var audio = document.getElementById('bgAudio');
+            if (audio.paused) {
+                audio.play();
+            }
+        });
+    </
