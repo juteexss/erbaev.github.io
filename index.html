@@ -55,8 +55,17 @@
             display: flex;
             flex-wrap: wrap; /* Разрешаем перенос кнопок на новую строку */
             justify-content: center;
-            opacity: 0;
-            animation: fadeIn 1s ease-in-out forwards, slideInFromTop 1s ease-out forwards;
+        }
+
+        .social-buttons a,
+        #start-soon {
+            opacity: 0; /* Устанавливаем начальную прозрачность */
+            transition: opacity 0.5s ease; /* Добавляем плавный переход */
+        }
+
+        .social-buttons a:hover,
+        #start-soon:hover {
+            opacity: 1; /* Устанавливаем полную прозрачность при наведении */
         }
 
         .social-buttons a {
@@ -68,7 +77,6 @@
             padding: 10px 20px;
             border-radius: 5px;
             transition: all 0.3s ease; /* Добавляем анимацию изменения размера */
-            transform: translateY(-20px);
         }
 
         .social-buttons a:hover {
@@ -82,9 +90,6 @@
             font-size: 14px;
             color: #333; /* Темно-серый цвет */
             cursor: pointer; /* Делаем текст кликабельным */
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s ease-in-out forwards, slideInFromBottom 1s ease-out forwards;
         }
 
         #start-soon:hover {
@@ -109,33 +114,6 @@
             #start-soon {
                 position: static; /* убираем абсолютное позиционирование */
                 margin-bottom: 20px; /* увеличиваем отступ снизу */
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideInFromTop {
-            from {
-                transform: translateY(-20px);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInFromBottom {
-            from {
-                transform: translateY(20px);
-            }
-            to {
-                transform: translateY(0);
             }
         }
         
@@ -250,12 +228,6 @@
         document.getElementById("volumeControl").addEventListener("input", function() {
             audio.volume = this.value; // Устанавливаем громкость аудио в соответствии с положением ползунка
         });
-
-        // Показываем элементы после загрузки страницы
-        window.onload = function() {
-            document.querySelector('.social-buttons').style.opacity = 1;
-            document.querySelector('#start-soon').style.opacity = 1;
-        };
     </script>
 </body>
 </html>
