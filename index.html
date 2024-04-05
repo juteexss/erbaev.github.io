@@ -210,9 +210,12 @@
         // Добавляем анимацию фона при движении мыши
         document.body.addEventListener('mousemove', function(event) {
             var movementX = event.movementX; // Получаем изменение координаты X при движении мыши
-            var bg = document.body.style.backgroundPositionX; // Получаем текущую позицию фона по оси X
-            var newPos = (parseFloat(bg) || 0) - (movementX || 0); // Вычисляем новую позицию фона
-            document.body.style.backgroundPositionX = newPos + 'px'; // Устанавливаем новую позицию фона
+            var movementY = event.movementY; // Получаем изменение координаты Y при движении мыши
+            var bgPosX = parseFloat(document.body.style.backgroundPositionX) || 0; // Получаем текущую позицию фона по оси X
+            var bgPosY = parseFloat(document.body.style.backgroundPositionY) || 0; // Получаем текущую позицию фона по оси Y
+            var newPos = [bgPosX - movementX || 0, bgPosY - movementY || 0]; // Вычисляем новую позицию фона
+            document.body.style.backgroundPositionX = newPos[0] + 'px'; // Устанавливаем новую позицию фона по оси X
+            document.body.style.backgroundPositionY = newPos[1] + 'px'; // Устанавливаем новую позицию фона по оси Y
         });
     </script>
 </body>
