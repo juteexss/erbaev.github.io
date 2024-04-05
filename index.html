@@ -17,12 +17,11 @@
             flex-direction: column;
             color: #fff;
             font-family: 'Roboto', sans-serif;
-            position: relative; /* Устанавливаем позицию для абсолютного позиционирования */
+            position: relative;
         }
 
         #loading-text {
             font-size: 36px;
-            /* Убираем точки и добавляем анимацию */
             animation: pulse 1.5s ease-in-out infinite alternate;
         }
 
@@ -41,7 +40,6 @@
             border-top: 6px solid #fff;
             width: 50px;
             height: 50px;
-            /* Добавляем анимацию вращения */
             animation: spin 1s linear infinite;
         }
 
@@ -53,39 +51,64 @@
         .social-buttons {
             margin-top: 20px;
             display: flex;
-            flex-wrap: wrap; /* Разрешаем перенос кнопок на новую строку */
+            flex-wrap: wrap;
             justify-content: center;
         }
 
         .social-buttons a {
             display: inline-block;
-            margin: 10px; /* увеличили отступы между кнопками */
+            margin: 10px;
             color: #fff;
             text-decoration: none;
-            background-color: #333; /* Темно-серый цвет */
+            background-color: #4CAF50;
             padding: 10px 20px;
             border-radius: 5px;
-            transition: all 0.3s ease; /* Добавляем анимацию изменения размера */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .social-buttons a:hover {
-            background-color: #222; /* Темнее для активного состояния */
-            transform: scale(1.1); /* Увеличиваем размер при наведении */
+            background-color: #45a049;
+            transform: scale(1.1);
         }
 
         #start-soon {
-            position: absolute; /* Абсолютное позиционирование */
-            bottom: 20px; /* Отступ от нижнего края страницы */
+            position: absolute;
+            bottom: 20px;
             font-size: 14px;
-            color: #333; /* Темно-серый цвет */
-            cursor: pointer; /* Делаем текст кликабельным */
+            color: #333;
+            cursor: pointer;
+            animation: fadeInDown 1s ease-out forwards;
         }
 
         #start-soon:hover {
-            text-decoration: underline; /* Добавляем подчеркивание при наведении */
+            text-decoration: underline;
         }
 
-        /* Медиа-запрос для мобильных устройств */
+        /* Animation for start-soon */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation for social buttons */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media only screen and (max-width: 600px) {
             #loading-text {
                 font-size: 24px;
@@ -101,22 +124,33 @@
             }
 
             #start-soon {
-                position: static; /* убираем абсолютное позиционирование */
-                margin-bottom: 20px; /* увеличиваем отступ снизу */
+                position: static;
+                margin-bottom: 20px;
             }
         }
-        
-        /* Стили для кнопки воспроизведения/паузы */
+
         .audio-controls {
             position: absolute;
             bottom: 20px;
             right: 20px;
             display: flex;
             align-items: center;
+            animation: fadeInRight 1s ease-out forwards;
         }
-        
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         .audio-controls button {
-            background-color: #333;
+            background-color: #4CAF50;
             color: #fff;
             border: none;
             border-radius: 50%;
@@ -125,18 +159,18 @@
             margin-left: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        
+
         .audio-controls button:hover {
-            background-color: #222;
+            background-color: #45a049;
         }
-        
-        /* Стили для ползунка громкости */
+
         .volume-slider {
             width: 100px;
             margin-left: 20px;
         }
-        
+
         .volume-slider input[type="range"] {
             -webkit-appearance: none;
             width: 100%;
@@ -145,10 +179,9 @@
             border-radius: 5px;
             outline: none;
             opacity: 0.7;
-            -webkit-transition: .2s;
             transition: opacity .2s;
         }
-        
+
         .volume-slider input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -158,7 +191,7 @@
             border-radius: 50%;
             cursor: pointer;
         }
-        
+
         .volume-slider input[type="range"]:hover {
             opacity: 1;
         }
@@ -174,48 +207,48 @@
         <a href="https://zelenka.guru/members/4608935/" target="_blank">Lolzteam</a>
         <a href="https://t.me/+8ROKvtBzZU0yOTdi" target="_blank">TG channel</a>
     </div>
-    <a href="https://scrined.github.io" target="_blank" id="start-soon">It's going to start soon...</a>
-    
-    <!-- Включение аудио -->
+    <div id="start-soon" onclick="window.location.href='https://scrined.github.io/'">It's going to start soon...</div>
+
     <audio id="audio" autoplay loop volume="0.2">
         <source src="Больше ничего(polnalyubvi).mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
-    
-    <!-- Элементы управления аудио -->
+
     <div class="audio-controls">
-        <!-- Кнопка воспроизведения/паузы -->
         <button id="playPauseButton">&#9658;</button>
-        <!-- Ползунок громкости -->
         <div class="volume-slider">
             <input type="range" min="0" max="1" step="0.01" value="0.2" id="volumeControl">
         </div>
     </div>
-    
+
     <script>
-        // Получаем ссылку на аудио
         var audio = document.getElementById("audio");
-        
-        // Получаем ссылку на кнопку воспроизведения/паузы
         var playPauseButton = document.getElementById("playPauseButton");
-        
-        // Функция для воспроизведения/паузы аудио
+
         function togglePlayPause() {
             if (audio.paused) {
                 audio.play();
-                playPauseButton.innerHTML = "&#10074;&#10074;"; // Изменяем значок на паузу
+                playPauseButton.innerHTML = "&#10074;&#10074;";
             } else {
                 audio.pause();
-                playPauseButton.innerHTML = "&#9658;"; // Изменяем значок на воспроизведение
+                playPauseButton.innerHTML = "&#9658;";
             }
         }
-        
-        // Привязываем функцию к событию нажатия на кнопку воспроизведения/паузы
+
         playPauseButton.addEventListener("click", togglePlayPause);
-        
-        // Привязываем функцию к событию изменения положения ползунка громкости
+
         document.getElementById("volumeControl").addEventListener("input", function() {
-            audio.volume = this.value; // Устанавливаем громкость аудио в соответствии с положением ползунка
+            audio.volume = this.value;
+        });
+
+        document.body.addEventListener('mousemove', function(event) {
+            var movementX = event.movementX;
+            var movementY = event.movementY;
+            var bgPosX = parseFloat(document.body.style.backgroundPositionX) || 0;
+            var bgPosY = parseFloat(document.body.style.backgroundPositionY) || 0;
+            var newPos = [bgPosX - movementX || 0, bgPosY - movementY || 0];
+            document.body.style.backgroundPositionX = newPos[0] + 'px';
+            document.body.style.backgroundPositionY = newPos[1] + 'px';
         });
     </script>
 </body>
