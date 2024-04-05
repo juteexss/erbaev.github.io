@@ -55,6 +55,8 @@
             display: flex;
             flex-wrap: wrap; /* Разрешаем перенос кнопок на новую строку */
             justify-content: center;
+            position: relative; /* Позиционируем относительно */
+            z-index: 1; /* Поднимаем на передний план */
         }
 
         .social-buttons a {
@@ -103,6 +105,7 @@
             right: 20px;
             display: flex;
             align-items: center;
+            z-index: 1; /* Поднимаем на передний план */
         }
         
         .audio-controls button {
@@ -155,7 +158,6 @@
 
         /* Скрытая кнопка */
         #hidden-button {
-            display: none;
             position: fixed;
             bottom: 10px;
             right: 10px;
@@ -163,8 +165,7 @@
             color: #fff;
             border: none;
             padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
+            z-index: 2; /* Поднимаем на передний план */
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -194,10 +195,19 @@
             <input type="range" min="0" max="1" step="0.01" value="0.2" id="volumeControl">
         </div>
     </div>
+    
+    <!-- Кнопка "не нажимать" -->
+    <button id="hidden-button" onclick="showHiddenContent()">Не нажимать</button>
 
-    <!-- Скрытая кнопка "не нажимать" -->
-    <button id="hidden-button">Не нажимать</button>
+    <!-- Скрытый контент -->
+    <div id="hidden-content" style="display: none;">
+        <!-- Кнопка "я же попросил не нажимай" -->
+        <button onclick="showHiddenContentTwo()">Я же попросил не нажимай</button>
 
+        <!-- Кнопка "хорошо" -->
+        <button onclick="redirectToTelegram()">Хорошо</button>
+    </div>
+    
     <script>
         // Получаем ссылку на аудио
         var audio = document.getElementById("audio");
@@ -224,31 +234,22 @@
             audio.volume = this.value; // Устанавливаем громкость аудио в соответствии с положением ползунка
         });
 
-        // Показываем скрытую кнопку при нажатии на "не нажимать"
-        document.getElementById("hidden-button").addEventListener("click", function() {
-            this.style.display = "none"; // Скрываем кнопку "не нажимать"
-            document.body.style.backgroundImage = "url('3TP2.gif')"; // Показываем другой фон
-            var forbiddenButton = document.createElement("button");
-            forbiddenButton.innerHTML = "Я же попросил не нажимать";
-            forbiddenButton.style.position = "absolute";
-            forbiddenButton.style.top = "50%";
-            forbiddenButton.style.left = "50%";
-            forbiddenButton.style.transform = "translate(-50%, -50%)";
-            forbiddenButton.onclick = function() {
-                document.body.style.backgroundImage = "url('80631.gif')"; // Показываем еще один фон
-                var okayButton = document.createElement("button");
-                okayButton.innerHTML = "Хорошо";
-                okayButton.style.position = "absolute";
-                okayButton.style.top = "50%";
-                okayButton.style.left = "50%";
-                okayButton.style.transform = "translate(-50%, -50%)";
-                okayButton.onclick = function() {
-                    window.location.href = "https://t.me/+mPodXUkDMcZmYzli"; // Переходим на указанный сайт
-                };
-                document.body.appendChild(okayButton); // Добавляем кнопку "Хорошо"
-            };
-            document.body.appendChild(forbiddenButton); // Добавляем кнопку "Я же попросил не нажимать"
-        });
+        // Показать скрытый контент
+        function showHiddenContent() {
+            var hiddenContent = document.getElementById("hidden-content");
+            hiddenContent.style.display = "block";
+        }
+
+        // Показать второй скрытый контент
+        function showHiddenContentTwo() {
+            var hiddenContentTwo = document.getElementById("hidden-content-two");
+            hiddenContentTwo.style.display = "block";
+        }
+
+        // Перенаправить на телеграм
+        function redirectToTelegram() {
+            window.location.href = "https://t.me/+mPodXUkDMcZmYzli";
+        }
     </script>
 </body>
 </html>
