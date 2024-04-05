@@ -19,7 +19,7 @@
             font-family: 'Roboto', sans-serif;
             position: relative; /* Устанавливаем позицию для абсолютного позиционирования */
             opacity: 0; /* Скрываем элементы */
-            animation: fadeIn 1s ease forwards; /* Анимация появления */
+            animation: fadeIn 2s ease forwards; /* Анимация появления */
         }
 
         @keyframes fadeIn {
@@ -67,8 +67,19 @@
 
         .social-buttons a,
         #start-soon {
-            opacity: 1; /* Устанавливаем полную прозрачность */
+            opacity: 0; /* Скрываем элементы */
             transition: opacity 0.5s ease; /* Добавляем плавный переход */
+            animation: slideIn 2s ease forwards; /* Анимация "прилета" */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100px); /* Начальное положение за пределами экрана сверху */
+            }
+            to {
+                transform: translateY(0); /* Конечное положение на экране */
+                opacity: 1; /* Устанавливаем полную прозрачность */
+            }
         }
 
         .social-buttons a {
