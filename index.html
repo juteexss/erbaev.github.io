@@ -18,6 +18,14 @@
             color: #fff;
             font-family: 'Roboto', sans-serif;
             position: relative; /* Устанавливаем позицию для абсолютного позиционирования */
+            opacity: 0; /* Скрываем элементы */
+            animation: fadeIn 1s ease forwards; /* Анимация появления */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1; /* Устанавливаем полную прозрачность */
+            }
         }
 
         #loading-text {
