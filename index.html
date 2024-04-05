@@ -55,8 +55,6 @@
             display: flex;
             flex-wrap: wrap; /* Разрешаем перенос кнопок на новую строку */
             justify-content: center;
-            position: relative; /* Позиционируем относительно */
-            z-index: 1; /* Поднимаем на передний план */
         }
 
         .social-buttons a {
@@ -64,23 +62,15 @@
             margin: 0 10px;
             color: #fff;
             text-decoration: none;
-            padding: 10px;
+            background-color: #333; /* Темно-серый цвет */
+            padding: 10px 20px;
             border-radius: 5px;
             transition: all 0.3s ease; /* Добавляем анимацию изменения размера */
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.3);
-            border: none;
-            color: #fff;
-            opacity: 0.3;
-            cursor: pointer;
         }
 
         .social-buttons a:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-            opacity: 0.6;
+            background-color: #222; /* Темнее для активного состояния */
+            transform: scale(1.1); /* Увеличиваем размер при наведении */
         }
 
         #start-soon {
@@ -113,7 +103,6 @@
             right: 20px;
             display: flex;
             align-items: center;
-            z-index: 1; /* Поднимаем на передний план */
         }
         
         .audio-controls button {
@@ -169,6 +158,12 @@
 <body>
     <div id="loading-text">Loading</div>
     <div class="loader"></div>
+    <div class="social-buttons">
+        <a href="https://t.me/findmide" target="_blank">Telegram</a>
+        <a href="https://vk.com/essenco" target="_blank">VKontakte</a>
+        <a href="https://zelenka.guru/members/4608935/" target="_blank">Lolzteam</a>
+    </div>
+    <div id="start-soon">It's going to start soon...</div>
     
     <!-- Включение аудио -->
     <audio id="audio" autoplay loop volume="0.2">
@@ -186,17 +181,6 @@
         </div>
     </div>
     
-    <!-- Кнопка "не нажимать" -->
-    <div class="social-buttons">
-        <button id="hidden-button" onclick="showHiddenContent()">Не нажимать</button>
-    </div>
-
-    <!-- Скрытый контент -->
-    <div id="hidden-content" style="display: none; position: relative; z-index: 1;">
-        <!-- Кнопка "я же попросил не нажимай" -->
-        <button onclick="showHiddenContentTwo()">Я же попросил не нажимай</button>
-    </div>
-
     <script>
         // Получаем ссылку на аудио
         var audio = document.getElementById("audio");
@@ -223,17 +207,16 @@
             audio.volume = this.value; // Устанавливаем громкость аудио в соответствии с положением ползунка
         });
 
-        // Показать скрытый контент
-        function showHiddenContent() {
-            var hiddenContent = document.getElementById("hidden-content");
-            hiddenContent.style.display = "block";
-        }
-
-        // Показать второй скрытый контент
-        function showHiddenContentTwo() {
-            var hiddenContentTwo = document.getElementById("hidden-content-two");
-            hiddenContentTwo.style.display = "block";
-        }
+        // Добавляем анимацию фона при движении мыши
+        document.body.addEventListener('mousemove', function(event) {
+            var movementX = event.movementX; // Получаем изменение координаты X при движении мыши
+            var movementY = event.movementY; // Получаем изменение координаты Y при движении мыши
+            var bgPosX = parseFloat(document.body.style.backgroundPositionX) || 0; // Получаем текущую позицию фона по оси X
+            var bgPosY = parseFloat(document.body.style.backgroundPositionY) || 0; // Получаем текущую позицию фона по оси Y
+            var newPos = [bgPosX - movementX / 10 || 0, bgPosY - movementY / 10 || 0]; // Вычисляем новую позицию фона
+            document.body.style.backgroundPositionX = newPos[0] + 'px'; // Устанавливаем новую позицию фона по оси X
+            document.body.style.backgroundPositionY = newPos[1] + 'px'; // Устанавливаем новую позицию фона по оси Y
+        });
     </script>
 </body>
 </html>
