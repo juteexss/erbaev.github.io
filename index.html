@@ -78,6 +78,11 @@
             bottom: 20px; /* Отступ от нижнего края страницы */
             font-size: 14px;
             color: #333; /* Темно-серый цвет */
+            cursor: pointer; /* Делаем текст кликабельным */
+        }
+
+        #start-soon:hover {
+            text-decoration: underline; /* Добавляем подчеркивание при наведении */
         }
 
         /* Медиа-запрос для мобильных устройств */
@@ -163,7 +168,7 @@
         <a href="https://vk.com/essenco" target="_blank">VKontakte</a>
         <a href="https://zelenka.guru/members/4608935/" target="_blank">Lolzteam</a>
     </div>
-    <div id="start-soon">It's going to start soon...</div>
+    <a href="https://scrined.github.io" target="_blank" id="start-soon">It's going to start soon...</a>
     
     <!-- Включение аудио -->
     <audio id="audio" autoplay loop volume="0.2">
@@ -205,17 +210,6 @@
         // Привязываем функцию к событию изменения положения ползунка громкости
         document.getElementById("volumeControl").addEventListener("input", function() {
             audio.volume = this.value; // Устанавливаем громкость аудио в соответствии с положением ползунка
-        });
-
-        // Добавляем анимацию фона при движении мыши
-        document.body.addEventListener('mousemove', function(event) {
-            var movementX = event.movementX; // Получаем изменение координаты X при движении мыши
-            var movementY = event.movementY; // Получаем изменение координаты Y при движении мыши
-            var bgPosX = parseFloat(document.body.style.backgroundPositionX) || 0; // Получаем текущую позицию фона по оси X
-            var bgPosY = parseFloat(document.body.style.backgroundPositionY) || 0; // Получаем текущую позицию фона по оси Y
-            var newPos = [bgPosX - movementX / 10 || 0, bgPosY - movementY / 10 || 0]; // Вычисляем новую позицию фона
-            document.body.style.backgroundPositionX = newPos[0] + 'px'; // Устанавливаем новую позицию фона по оси X
-            document.body.style.backgroundPositionY = newPos[1] + 'px'; // Устанавливаем новую позицию фона по оси Y
         });
     </script>
 </body>
