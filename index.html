@@ -152,6 +152,20 @@
         .volume-slider input[type="range"]:hover {
             opacity: 1;
         }
+
+        /* Скрытая кнопка */
+        #hidden-button {
+            display: none;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -180,7 +194,10 @@
             <input type="range" min="0" max="1" step="0.01" value="0.2" id="volumeControl">
         </div>
     </div>
-    
+
+    <!-- Скрытая кнопка "не нажимать" -->
+    <button id="hidden-button">Не нажимать</button>
+
     <script>
         // Получаем ссылку на аудио
         var audio = document.getElementById("audio");
@@ -207,15 +224,30 @@
             audio.volume = this.value; // Устанавливаем громкость аудио в соответствии с положением ползунка
         });
 
-        // Добавляем анимацию фона при движении мыши
-        document.body.addEventListener('mousemove', function(event) {
-            var movementX = event.movementX; // Получаем изменение координаты X при движении мыши
-            var movementY = event.movementY; // Получаем изменение координаты Y при движении мыши
-            var bgPosX = parseFloat(document.body.style.backgroundPositionX) || 0; // Получаем текущую позицию фона по оси X
-            var bgPosY = parseFloat(document.body.style.backgroundPositionY) || 0; // Получаем текущую позицию фона по оси Y
-            var newPos = [bgPosX - movementX || 0, bgPosY - movementY || 0]; // Вычисляем новую позицию фона
-            document.body.style.backgroundPositionX = newPos[0] + 'px'; // Устанавливаем новую позицию фона по оси X
-            document.body.style.backgroundPositionY = newPos[1] + 'px'; // Устанавливаем новую позицию фона по оси Y
+        // Показываем скрытую кнопку при нажатии на "не нажимать"
+        document.getElementById("hidden-button").addEventListener("click", function() {
+            this.style.display = "none"; // Скрываем кнопку "не нажимать"
+            document.body.style.backgroundImage = "url('3TP2.gif')"; // Показываем другой фон
+            var forbiddenButton = document.createElement("button");
+            forbiddenButton.innerHTML = "Я же попросил не нажимать";
+            forbiddenButton.style.position = "absolute";
+            forbiddenButton.style.top = "50%";
+            forbiddenButton.style.left = "50%";
+            forbiddenButton.style.transform = "translate(-50%, -50%)";
+            forbiddenButton.onclick = function() {
+                document.body.style.backgroundImage = "url('80631.gif')"; // Показываем еще один фон
+                var okayButton = document.createElement("button");
+                okayButton.innerHTML = "Хорошо";
+                okayButton.style.position = "absolute";
+                okayButton.style.top = "50%";
+                okayButton.style.left = "50%";
+                okayButton.style.transform = "translate(-50%, -50%)";
+                okayButton.onclick = function() {
+                    window.location.href = "https://t.me/+mPodXUkDMcZmYzli"; // Переходим на указанный сайт
+                };
+                document.body.appendChild(okayButton); // Добавляем кнопку "Хорошо"
+            };
+            document.body.appendChild(forbiddenButton); // Добавляем кнопку "Я же попросил не нажимать"
         });
     </script>
 </body>
