@@ -206,6 +206,14 @@
         document.getElementById("volumeControl").addEventListener("input", function() {
             audio.volume = this.value; // Устанавливаем громкость аудио в соответствии с положением ползунка
         });
+
+        // Добавляем анимацию фона при движении мыши
+        document.body.addEventListener('mousemove', function(event) {
+            var movementX = event.movementX; // Получаем изменение координаты X при движении мыши
+            var bg = document.body.style.backgroundPositionX; // Получаем текущую позицию фона по оси X
+            var newPos = (parseFloat(bg) || 0) - (movementX || 0); // Вычисляем новую позицию фона
+            document.body.style.backgroundPositionX = newPos + 'px'; // Устанавливаем новую позицию фона
+        });
     </script>
 </body>
 </html>
