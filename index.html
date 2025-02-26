@@ -17,20 +17,19 @@
             flex-direction: column;
             color: #fff;
             font-family: 'Roboto', sans-serif;
-            position: relative; /* Устанавливаем позицию для абсолютного позиционирования */
-            opacity: 0; /* Скрываем элементы */
-            animation: fadeIn 2s ease forwards; /* Анимация появления */
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
         }
 
         @keyframes fadeIn {
             to {
-                opacity: 1; /* Устанавливаем полную прозрачность */
+                opacity: 1;
             }
         }
 
         #loading-text {
             font-size: 36px;
-            /* Убираем точки и добавляем анимацию */
             animation: pulse 1.5s ease-in-out infinite alternate;
         }
 
@@ -49,7 +48,6 @@
             border-top: 6px solid #fff;
             width: 50px;
             height: 50px;
-            /* Добавляем анимацию вращения */
             animation: spin 1s linear infinite;
         }
 
@@ -61,56 +59,55 @@
         .social-buttons {
             margin-top: 20px;
             display: flex;
-            flex-wrap: wrap; /* Разрешаем перенос кнопок на новую строку */
+            flex-wrap: wrap;
             justify-content: center;
         }
 
         .social-buttons a,
         #start-soon {
-            opacity: 0; /* Скрываем элементы */
-            transition: opacity 0.5s ease; /* Добавляем плавный переход */
-            animation: slideIn 2s ease forwards; /* Анимация "прилета" */
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: slideIn 2s ease forwards;
         }
 
         @keyframes slideIn {
             from {
-                transform: translateY(-100px); /* Начальное положение за пределами экрана сверху */
+                transform: translateY(-100px);
             }
             to {
-                transform: translateY(0); /* Конечное положение на экране */
-                opacity: 1; /* Устанавливаем полную прозрачность */
+                transform: translateY(0);
+                opacity: 1;
             }
         }
 
         .social-buttons a {
             display: inline-block;
-            margin: 10px; /* увеличили отступы между кнопками */
+            margin: 10px;
             color: #fff;
             text-decoration: none;
-            background-color: #333; /* Темно-серый цвет */
+            background-color: #333;
             padding: 10px 20px;
             border-radius: 5px;
-            transition: all 0.3s ease; /* Добавляем анимацию изменения размера */
+            transition: all 0.3s ease;
         }
 
         .social-buttons a:hover {
-            background-color: #222; /* Темнее для активного состояния */
-            transform: scale(1.1); /* Увеличиваем размер при наведении */
+            background-color: #222;
+            transform: scale(1.1);
         }
 
         #start-soon {
-            position: absolute; /* Абсолютное позиционирование */
-            bottom: 20px; /* Отступ от нижнего края страницы */
+            position: absolute;
+            bottom: 20px;
             font-size: 14px;
-            color: #333; /* Темно-серый цвет */
-            cursor: pointer; /* Делаем текст кликабельным */
+            color: #333;
+            cursor: pointer;
         }
 
         #start-soon:hover {
-            text-decoration: underline; /* Добавляем подчеркивание при наведении */
+            text-decoration: underline;
         }
 
-        /* Медиа-запрос для мобильных устройств */
         @media only screen and (max-width: 600px) {
             #loading-text {
                 font-size: 24px;
@@ -126,12 +123,11 @@
             }
 
             #start-soon {
-                position: static; /* убираем абсолютное позиционирование */
-                margin-bottom: 20px; /* увеличиваем отступ снизу */
+                position: static;
+                margin-bottom: 20px;
             }
         }
-        
-        /* Стили для кнопки воспроизведения/паузы */
+
         .audio-controls {
             position: absolute;
             bottom: 20px;
@@ -139,7 +135,7 @@
             display: flex;
             align-items: center;
         }
-        
+
         .audio-controls button {
             background-color: #333;
             color: #fff;
@@ -151,17 +147,16 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        
+
         .audio-controls button:hover {
             background-color: #222;
         }
-        
-        /* Стили для ползунка громкости */
+
         .volume-slider {
             width: 100px;
             margin-left: 20px;
         }
-        
+
         .volume-slider input[type="range"] {
             -webkit-appearance: none;
             width: 100%;
@@ -173,7 +168,7 @@
             -webkit-transition: .2s;
             transition: opacity .2s;
         }
-        
+
         .volume-slider input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -183,7 +178,7 @@
             border-radius: 50%;
             cursor: pointer;
         }
-        
+
         .volume-slider input[type="range"]:hover {
             opacity: 1;
         }
@@ -200,13 +195,13 @@
         <a href="https://t.me/+8ROKvtBzZU0yOTdi" target="_blank">TG channel</a>
     </div>
     <a href="https://scrined.github.io" target="_blank" id="start-soon">It's going to start soon...</a>
-    
+
     <!-- Включение аудио -->
     <audio id="audio" autoplay loop volume="0.2">
         <source src="Больше ничего(polnalyubvi).mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
-    
+
     <!-- Элементы управления аудио -->
     <div class="audio-controls">
         <!-- Кнопка воспроизведения/паузы -->
@@ -216,14 +211,14 @@
             <input type="range" min="0" max="1" step="0.01" value="0.2" id="volumeControl">
         </div>
     </div>
-    
+
     <script>
         // Получаем ссылку на аудио
         var audio = document.getElementById("audio");
-        
+
         // Получаем ссылку на кнопку воспроизведения/паузы
         var playPauseButton = document.getElementById("playPauseButton");
-        
+
         // Функция для воспроизведения/паузы аудио
         function togglePlayPause() {
             if (audio.paused) {
@@ -234,10 +229,10 @@
                 playPauseButton.innerHTML = "&#9658;"; // Изменяем значок на воспроизведение
             }
         }
-        
+
         // Привязываем функцию к событию нажатия на кнопку воспроизведения/паузы
         playPauseButton.addEventListener("click", togglePlayPause);
-        
+
         // Привязываем функцию к событию изменения положения ползунка громкости
         document.getElementById("volumeControl").addEventListener("input", function() {
             audio.volume = this.value; // Устанавливаем громкость аудио в соответствии с положением ползунка
